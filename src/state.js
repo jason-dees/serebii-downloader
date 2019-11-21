@@ -1,11 +1,11 @@
 var store = {
     state: {
         activePokemon: -1,
-        msg: "download some Sun-Moon pokemans",
-        iconRoute: "https://serebii.net/pokedex-sm/icon/",
-        normalRoute: "https://serebii.net/sunmoon/pokemon/",
-        shinyRoute: "https://serebii.net/Shiny/SM/",
-        lastPokemon: 809
+        msg: "download some Sword-Shield pokemans",
+        iconRoute: "https://serebii.net/pokedex-swsh/icon/",
+        normalRoute: "https://serebii.net/swordshield/pokemon/",
+        shinyRoute: "https://serebii.net/Shiny/SWSH/",
+        lastPokemon: 890
     },
     setActivePokemon : function(newPokemon){
         this.state.activePokemon = newPokemon;

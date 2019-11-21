@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ state.msg }}</h1>
     <img v-bind:src="iconSrc" />
     <img v-bind:src="normalSrc" />
@@ -14,8 +14,9 @@ export default {
   name: 'Pokemon',
   props:['selectedPokemon'],
   data: function(){
+    let selectedPokemon = this.$route.params.selectedPokemon;
     return {
-      pokemonNumber: this.$route.params.selectedPokemon,
+      pokemonNumber: selectedPokemon,
       state: store.state
     }
   },
@@ -31,7 +32,8 @@ export default {
       }
   },
   mounted:function(){
-    if(this.$route.params.selectedPokemon < 1){
+    if(this.$route.params.selectedPokemon  == undefined || 
+        this.$route.params.selectedPokemon * 1 > this.state.lastPokemon){
       this.newPokemon();
     }
     else{
@@ -41,12 +43,22 @@ export default {
   methods: {
    newPokemon: function(){
      let number = Math.floor(Math.random() * (this.state.lastPokemon+1));
-     store.setActivePokemon(number);
      this.$router.push({ path: `/${number}` }) 
    }, 
    zeroOutNumber: function(number){
      return ("000" + number).slice(-3);
    }
+  },
+  watch:{
+    $route(to){
+      console.log("change");
+      if(to.params.selectedPokemon * 1 > this.state.lastPokemon){
+        this.newPokemon();
+      }
+      else{
+        store.setActivePokemon(to.params.selectedPokemon);
+      }
+    }
   }
 }
 </script>
