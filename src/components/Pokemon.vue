@@ -4,6 +4,7 @@
     <img v-bind:src="iconSrc" />
     <img v-bind:src="normalSrc" />
     <img v-bind:src="shinySrc" />
+    <br>
     <button v-on:click="newPokemon">new pokemon</button>
   </div>
 </template>
