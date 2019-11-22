@@ -32,13 +32,7 @@ export default {
       }
   },
   mounted:function(){
-    if(this.$route.params.selectedPokemon  == undefined || 
-        this.$route.params.selectedPokemon * 1 > this.state.lastPokemon){
-      this.newPokemon();
-    }
-    else{
-     store.setActivePokemon(this.$route.params.selectedPokemon);
-    }
+    this.validateRoute(this.$route);
   },
   methods: {
    newPokemon: function(){
@@ -47,17 +41,22 @@ export default {
    }, 
    zeroOutNumber: function(number){
      return ("000" + number).slice(-3);
+   },
+   validateRoute(route){
+     let selectedPokemon = route.params.selectedPokemon;
+      if(selectedPokemon === undefined
+        || isNaN(selectedPokemon * 1)
+        || selectedPokemon * 1 > this.state.lastPokemon){
+        this.newPokemon();
+      }
+      else{
+        store.setActivePokemon(route.params.selectedPokemon);
+      }
    }
   },
   watch:{
     $route(to){
-      console.log("change");
-      if(to.params.selectedPokemon * 1 > this.state.lastPokemon){
-        this.newPokemon();
-      }
-      else{
-        store.setActivePokemon(to.params.selectedPokemon);
-      }
+      this.validateRoute(to);
     }
   }
 }
