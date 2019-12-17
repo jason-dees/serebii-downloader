@@ -49,8 +49,7 @@ export default {
      this.$router.push({ path: `/${newGen}/${this.selectedPokemon}` });
    },
    newPokemon: function(){
-     let number = Math.floor(Math.random() * (this.state.lastPokemon+1));
-     if(number == 0){alert("i randomly generated 0");}
+     let number = Math.floor(Math.random() * (this.state.lastPokemon + 1)) + 1;
      this.$router.push({ path: `/${this.gen}/${number}` })
    },
    zeroOutNumber: function(number){
