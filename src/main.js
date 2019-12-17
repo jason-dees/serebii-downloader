@@ -6,7 +6,7 @@ import Pokemon from './components/Pokemon'
 Vue.config.productionTip = false
 const routes = [
   {path: '/', component: Pokemon},
-  {path: '/:selectedPokemon', component: Pokemon} 
+  {path: '/:gen/:selectedPokemon', component: Pokemon, props: true }
 ];
 const router = new VueRouter({routes})
 Vue.use(VueRouter)
